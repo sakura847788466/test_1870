@@ -8,7 +8,7 @@ $(function () {
   var pageNo = 1;
   var pageSize = 6;
   //localStorage
-  //window.localStorage.removeItem('ip');
+  // window.localStorage.removeItem('pass');
   var ipVal = window.localStorage.getItem('ip')
   if (ipVal !== null) {
     $('.el-message-box').css('display', 'none')
@@ -101,7 +101,19 @@ $(function () {
   $('.outCard').on('click', function (res) {
     WEB_MoveCard()
   })
+  //重置密码
+  $('.setPas').click(function () {
+    window.localStorage.setItem('pass', 88888888)
+    const n_pass = window.localStorage.getItem('pass')
+    console.log(n_pass)
+    $.messager.alert("提示", "密码重置成功,当前密码为:" + n_pass)
 
+  })
+  //修改密码
+  $('.updatePass').click(function () {
+
+    $('.upDateBox').css('display', 'block')
+  })
   $('.data').click(function () {
     // $('#cc').css('width','53%')
     $('#cc').show()

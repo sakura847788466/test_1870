@@ -630,6 +630,36 @@ input::-webkit-input-placeholder {
   cursor: pointer;
   font-size: 18px;
 }
+.updatePass{
+  width: 80px;
+  height: 36px;
+  background: rgb(52, 117, 238);
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  position:absolute;
+  bottom:23px;
+  right:2%;
+}
+ .setPas{
+  width: 80px;
+  height: 36px;
+  background: rgb(52, 117, 238);
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  position:absolute;
+  bottom:23px;
+  right:9%;
+}
 .infoList .infoList_b .outCard{
   width: 16.5%;
   height: 45px;

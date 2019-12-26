@@ -114,6 +114,58 @@ $(function () {
 
     $('.upDateBox').css('display', 'block')
   })
+
+  //确认
+  $('.isSet').click(function () {
+    const oldPass = $('#oldpwd').val()
+    const newPass = $('#newpwd').val()
+    const quePass = $('#quepwd').val()
+    const reg = new RegExp(/^\d{8}$/);
+
+    if (oldPass == '') {
+      $.messager.alert('提示', '请输入您的旧密码')
+    }
+    if (newPass == '') {
+      $.messager.alert('提示', '请输入新密码')
+    } else {
+      if (!reg.test(newPass)) {
+        $.messager.alert('提示', '请输入8位纯数字有效的密码')
+      } else {
+        const newStatus = true;
+        return newStatus;
+      }
+    }
+
+    // else {
+    //   const localStoragePass = window.localStorage.getItem('pass')
+    //   if (oldPass !== localStoragePass) {
+    //     $.messager.alert("提示", '旧密码错误')
+    //   } else {
+    //     const oldStatus = true;
+    //     return oldStatus;
+    //   }
+    // }
+
+    // if (quePass == '') {
+    //   $.messager.alert('提示', '您确认的新密码不能为空')
+    // } else {
+    //   if (!reg.test(quePass)) {
+    //     $.messager.alert('提示', '请输入8位纯数字有效的密码')
+    //   } else if (quePass !== newPass) {
+    //     $.messager.alert('提示', '两次输入的密码不一致')
+    //   } else {
+    //     const queStatus = true;
+    //     return queStatus;
+    //   }
+    // }
+
+    // if (oldStatus && newStatus && queStatus) {
+    //   alert("修改成功")
+    // } else {
+
+    // }
+
+  })
   $('.data').click(function () {
     // $('#cc').css('width','53%')
     $('#cc').show()

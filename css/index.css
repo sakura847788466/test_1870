@@ -1135,3 +1135,47 @@ html[data-useragent*='MSIE 7.0'] .container .con_c .con_cc {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* 密码修改 */
+.inputpwd {
+  outline: medium;
+  border: none !important;
+  border-bottom: 1px solid rgba(235,235,235,1)!important;
+}
+.invisible {
+  margin-top: -50px;
+  margin-left: 80%
+}
+.login_form div {
+  display:flex;
+  margin-top:30px;
+}
+.login_form div span{
+  flex:1;
+  line-height: 40px;
+  text-align: center;
+
+}
+.login_form input {
+  padding-left: 10px;
+  border: #E7E7E7 1px solid;
+  color: #72828f;
+  border-radius: 10px;
+  font-size:18px
+  }
+  .login_form .username {
+  background-size: 30px 30px;
+  }
+  .login_form .password {
+  background-size: 26px 33px;
+  }
+.isSet{
+  width: 100px;
+  height: 43px;
+  background: rgb(52, 117, 238);
+  color: #fff;
+  border: none;
+  line-height:43px;
+  text-align: center;
+  cursor: pointer;
+}

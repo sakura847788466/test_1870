@@ -5,8 +5,11 @@ $(function () {
     userData: null,
     name: location.hostname,
   }
+
   var pageNo = 1;
   var pageSize = 6;
+  const passWard = 88888888;
+  window.localStorage.setItem('pass', passWard)
   //localStorage
   // window.localStorage.removeItem('pass');
   var ipVal = window.localStorage.getItem('ip')
@@ -16,36 +19,53 @@ $(function () {
     $('.maskT').css('z-index', '-1000')
 
     $('.haoDuan').on('click', function () {
-      const pass = window.localStorage.getItem('pass')
-      console.log(pass)
-      if (pass == null) {
-        $('.el-message-boxPas').css('display', 'block')
-      } else if (pass == '') {
-        $('.el-message-boxPas').css('display', 'block')
+      // 1.显示密码框，密码验证
+      $('.el-message-boxPas').css('display', 'block')
+    })
+
+    $('.el-buttonPas').on('click', function () {
+      let pass = window.localStorage.getItem('pass')
+      let pass_inp = $('.el-input__innerPas').val()
+      let reg = new RegExp(/^\d{8}$/);
+      if (pass_inp == '') {
+        $.messager.alert("提示", "请输入你的密码")
+      } else if (!reg.test(pass_inp)) {
+        $.messager.alert('提示', '请输入8位纯数字的密码')
+      } else if (pass_inp !== pass) {
+        $.messager.alert('提示', '您输入的密码错误，请核对后在输入')
 
       } else {
-        return false;
-      }
-
-    })
-    $('.el-button--smallPas').on('click', function () {
-      var reg = new RegExp(/^\d{8}$/);
-      const pass = $('.el-input__innerPas').val()
-      if (pass == '') {
-        $.messager.alert('提示', '请输入密码')
-      } else if (!reg.test(pass)) {
-        $.messager.alert('提示', '密码必须是8位纯数字')
-      }
-      else {
         $('.el-message-boxPas').css('display', 'none')
-        window.localStorage.setItem('pass', pass)
+        setTimeout(function () {
+          $('.el-message-boxPasD').css('display', 'block')
+        }, 2000)
       }
     })
+    //票号段确定
+    $('.el-button--smallPasD').on('click', function () {
+      let reg = new RegExp(/^\d{10}$/)
+      // 10位数票据号
+      const piaoHao_v = $('.el-input__innerPasD').val()
+      if (piaoHao_v == '') {
+        $.messager.alert('提示', '请输入票据号段')
+      } else if (!reg.test(piaoHao_v)) {
+        $.messager.alert('提示', '请输入正确的票据号段')
+      } else {
+        $('.haoDuan_v').html(piaoHao_v)
+        const r = setInterval(function () {
+          $('.el-message-boxPasD').css('display', 'none')
+        }, 2000)
+
+      }
+    })
+
+
     $('.con_cc').on('click', function () {
       //点击进入之后直接执行进卡   点击进卡
-      const input_val = $('.piaoDuan_inp').val()
+      const input_val = $('.haoDuan_v').html()
       console.log(input_val)
-      if (input_val == '') {
+      let reg = new RegExp(/^\d{10}$/)
+      if (!reg.test(input_val)) {
         $.messager.alert('提示', '请先输入发票号段')
       } else {
         $('.maskInfo').show()
@@ -105,66 +125,89 @@ $(function () {
   $('.setPas').click(function () {
     window.localStorage.setItem('pass', 88888888)
     const n_pass = window.localStorage.getItem('pass')
-    console.log(n_pass)
     $.messager.alert("提示", "密码重置成功,当前密码为:" + n_pass)
 
   })
   //修改密码
   $('.updatePass').click(function () {
-
     $('.upDateBox').css('display', 'block')
+  })
+
+  $('#oldpwd').on('blur', function () {
+    const oldPass = $(this).val()
+    const reg = new RegExp(/^\d{8}$/);
+    const oldPass_l = window.localStorage.getItem('pass')
+    if (oldPass == '') {
+      $('.info').html('请输入您的旧密码')
+    } else if (!reg.test(oldPass)) {
+      $('.info').html('请输入8位数纯数字密码')
+
+    } else if (oldPass_l !== oldPass) {
+      $('.info').html('密码错误')
+
+    }
+    else {
+      $('.info').html('密码格式正确').css('color', 'green')
+
+    }
+  })
+  $('#newpwd').on('blur', function () {
+    const newPass = $(this).val()
+    const reg = new RegExp(/^\d{8}$/);
+    if (newPass == '') {
+      $('.info1').html('请输入您的新密码')
+    } else if (!reg.test(newPass)) {
+      $('.info1').html('请输入8位数纯数字密码')
+
+    } else {
+      $('.info1').html('密码格式正确').css('color', 'green')
+    }
+  })
+  $('#quepwd').on('blur', function () {
+    const quePass = $(this).val()
+    const newPass = $('#newpwd').val()
+    if (quePass == '') {
+      $('.info2').html('请确认您的新密码')
+    } else if (newPass !== quePass) {
+      $('.info2').html('两次输入的密码不一致')
+
+    } else {
+      $('.info2').html('密码一致').css('color', 'green')
+
+
+    }
   })
 
   //确认
   $('.isSet').click(function () {
-    const oldPass = $('#oldpwd').val()
-    const newPass = $('#newpwd').val()
-    const quePass = $('#quepwd').val()
-    const reg = new RegExp(/^\d{8}$/);
+    if ($('.info2')[0].style.color == 'green' && $('.info1')[0].style.color == 'green' && $('.info')[0].style.color == 'green') {
+      $.messager.confirm('提示', '是否保存修改的密码', function (res) {
+        if (res) {
+          const newPass = $('#quepwd').val()
+          window.localStorage.setItem('pass', newPass)
+          const updataPass_n = window.localStorage.getItem('pass')
+          if (updataPass_n == newPass) {
+            $.messager.confirm('提示', '密码修改成功', function (res) {
+              if (res) {
+                $('.upDateBox').css('display', 'none')
+              }
 
-    if (oldPass == '') {
-      $.messager.alert('提示', '请输入您的旧密码')
-    }
-    if (newPass == '') {
-      $.messager.alert('提示', '请输入新密码')
+            })
+
+          }
+        }
+      })
     } else {
-      if (!reg.test(newPass)) {
-        $.messager.alert('提示', '请输入8位纯数字有效的密码')
-      } else {
-        const newStatus = true;
-        return newStatus;
-      }
+      alert("密码错误")
     }
 
-    // else {
-    //   const localStoragePass = window.localStorage.getItem('pass')
-    //   if (oldPass !== localStoragePass) {
-    //     $.messager.alert("提示", '旧密码错误')
-    //   } else {
-    //     const oldStatus = true;
-    //     return oldStatus;
-    //   }
-    // }
 
-    // if (quePass == '') {
-    //   $.messager.alert('提示', '您确认的新密码不能为空')
-    // } else {
-    //   if (!reg.test(quePass)) {
-    //     $.messager.alert('提示', '请输入8位纯数字有效的密码')
-    //   } else if (quePass !== newPass) {
-    //     $.messager.alert('提示', '两次输入的密码不一致')
-    //   } else {
-    //     const queStatus = true;
-    //     return queStatus;
-    //   }
-    // }
 
-    // if (oldStatus && newStatus && queStatus) {
-    //   alert("修改成功")
-    // } else {
 
-    // }
-
+  })
+  //关闭密码层
+  $('.iconfont').click(function () {
+    $('.upDateBox').css('display', 'none')
   })
   $('.data').click(function () {
     // $('#cc').css('width','53%')
@@ -462,6 +505,7 @@ function load (feedback, ipVal, pageNo, pageSize) {
     // alert(saoM)
     if (saoM == '' || saoM == null) {
       $.messager.alert('提示', '未获得纸质票据代码')
+      $('.nowTicket').html(saoM)
     } else {
 
       var testData = {

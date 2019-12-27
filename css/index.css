@@ -116,12 +116,13 @@ body {
 }
 .haoDuan{
   display:flex;
-  width:242px;
+  /* width:290px; */
 }
 .haoDuan span{
   display:inline-block;
   height:100%;
   text-align: center;
+  cursor:pointer;
 }
 
 /* 插卡弹出层控件 */
@@ -757,7 +758,7 @@ input::-webkit-input-placeholder {
 .notclick{
   pointer-events: none;
 }
-.el-message-box ,.el-message-boxPas{
+.el-message-box ,.el-message-boxPas,.el-message-boxPasD{
   display: inline-block;
   width: 420px;
   height: 230px;
@@ -780,12 +781,12 @@ input::-webkit-input-placeholder {
   z-index: 1000;
 }
 
-.el-message-box__header,.el-message-box__headerPas {
+.el-message-box__header,.el-message-box__headerPas,.el-message-box__headerPasD {
   position: relative;
   padding: 15px 15px 10px;
 }
 
-.el-message-box__title ,.el-message-box__titlePas {
+.el-message-box__title ,.el-message-box__titlePas,.el-message-box__titlePasD {
   padding-left: 0;
   margin-bottom: 0;
   font-size: 18px;
@@ -793,14 +794,14 @@ input::-webkit-input-placeholder {
   color: #303133;
 }
 
-.el-message-box__content,.el-message-box__contentPas {
+.el-message-box__content,.el-message-box__contentPas,.el-message-box__contentPasD {
   position: relative;
   padding: 10px 15px;
   color: #606266;
   font-size: 14px;
 }
 
-.el-message-box__message,.el-message-box__messagePas {
+.el-message-box__message,.el-message-box__messagePas,.el-message-box__messagePasD {
   margin: 0;
 }
 
@@ -808,23 +809,23 @@ input::-webkit-input-placeholder {
   margin: 0;
   line-height: 24px;
 }
-.el-message-box__messagePas p {
+.el-message-box__messagePas,.el-message-box__messagePasD p {
   margin: 0;
   line-height: 24px;
 }
 
-.el-message-box__input,.el-message-box__inputPas {
+.el-message-box__input,.el-message-box__inputPas,.el-message-box__inputPasD {
   padding-top: 15px;
 }
 
-.el-input,.el-inputPas {
+.el-input,.el-inputPas,.el-inputPasD{
   position: relative;
   font-size: 14px;
   display: inline-block;
   width: 100%;
 }
 
-.el-input__inner,.el-input__innerPas {
+.el-input__inner,.el-input__innerPas,.el-input__innerPasD {
   -webkit-appearance: none;
   background-color: #fff;
   background-image: none;
@@ -842,20 +843,20 @@ input::-webkit-input-placeholder {
   width: 100%;
 }
 
-.el-message-box__errormsg,.el-message-box__errormsgPas {
+.el-message-box__errormsg,.el-message-box__errormsgPas,.el-message-box__errormsgPasD {
   color: #f56c6c;
   font-size: 12px;
   min-height: 18px;
   margin-top: 2px;
 }
 
-.el-message-box__btns,.el-message-box__btnsPas {
+.el-message-box__btns,.el-message-box__btnsPas,.el-message-box__btnsPasD{
   padding: 5px 15px 0;
   text-align: right;
   height: 50px;
 }
 
-.el-button--small,.el-button--smallPas {
+.el-button--small,.el-button--smallPas,.el-button--smallPasD {
   padding: 9px 15px;
   width: 100px;
   height: 43px;

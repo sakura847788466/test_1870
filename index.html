@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="./css/index.css" />
   <link rel="stylesheet" type="text/css" href="./css/easyui.css" />
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1579188_1o5ajkah4dg.css">
   <link rel="stylesheet" type="text/css" href="./css/icon.css" />
   <link rel="stylesheet" type="text/css" href="./css/demo.css" />
 
@@ -26,12 +27,11 @@
     <div class="leftInfo" style="font-size: 21px;">
       <div class="haoDuan">
         <span>发票号段:</span>
-        <input class="piaoDuan_inp" autocomplete="off" style="width:143px;height:31px;font-size:14px;"
-          placeholder="请输入你的发票号段">
+        <span class="haoDuan_v">请输入你的发票号段</span>
       </div>
       <div class="nowNumber">
         <span>当前票号:</span>
-        <span>2141313134</span>
+        <span class="nowTicket"></span>
       </div>
       <div class="num">
         <span>余额数量:</span>
@@ -201,6 +201,34 @@
       </button>
     </div>
   </div>
+  <!-- 票号段输入框 -->
+  <div class="el-message-boxPasD" style="display:none;">
+    <div class="el-message-box__headerPasD">
+      <div class="el-message-box__titlePasD">
+        <span>提示</span>
+      </div>
+    </div>
+    <div class="el-message-box__contentPasD ">
+      <div class="el-message-box__messagePasD">
+        <p>请输入你的发票号段</p>
+      </div>
+      <div class="el-message-box__inputPasD">
+        <div class="el-inputPasD">
+          <input type="text" autocomplete="off" placeholder="" class="el-input__innerPasD" autocomplete="off">
+        </div>
+        <div class="el-message-box__errormsgPasD" style="visibility: hidden;">
+        </div>
+      </div>
+    </div>
+    <div class="el-message-box__btnsPasD">
+      <button type="button" class="el-buttonPasD el-button--default el-button--smallPasD el-button--primary "
+        data-ip="">
+        <span class="ipTruePasD">
+          确定
+        </span>
+      </button>
+    </div>
+  </div>
   <!-- 密码提示框 -->
   <div class="el-message-boxPas" style="display:none;">
     <div class="el-message-box__headerPas">
@@ -214,7 +242,7 @@
       </div>
       <div class="el-message-box__inputPas">
         <div class="el-inputPas">
-          <input type="password" autocomplete="off" placeholder="" class="el-input__innerPas" autocomplete="off">
+          <input type="text" autocomplete="off" placeholder="" class="el-input__innerPas" autocomplete="off">
         </div>
         <div class="el-message-box__errormsgPas" style="visibility: hidden;">
         </div>
@@ -230,26 +258,32 @@
   </div>
   <!-- 密码修改 -->
   <form class="login_form upDateBox"
-    style="display:none;z-index:1000;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;width:420px;height:283px;background-color: #bc58bc;">
-
+    style="position: relative;display:none;z-index:1000;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;width:420px;height:356px;background-color: rgba(183, 210, 255, 1);">
+    <i class="iconfont"
+      style="position:absolute;top:3px;right:3px;color:red;width:30px;height:30px;text-align:center;cursor: pointer;">X</i>
     <div>
       <span>旧密码:</span>
       <input class="password inputpwd" id="oldpwd" name="oldpwd" type="password" placeholder="请输入旧密码"
         style="height:40px;flex:3;margin-right:30px" />
     </div>
+    <span class="info" style="margin-left:95px;color:red;"></span>
 
     <div>
       <span>新密码:</span>
       <input class="password inputpwd" id="newpwd" name="newpwd" type="password" placeholder="请输入新密码"
         style="height:40px;flex:3;margin-right:30px" />
     </div>
+    <span class="info1" style="margin-left:95px;color:red;"></span>
 
     <div>
       <span>确认新密码:</span>
       <input class="password inputpwd" id="quepwd" name="quepwd" type="password" placeholder="请确认密码"
         style="height:40px;flex:3;margin-right:30px" />
     </div>
+    <span class="info2" style="margin-left:95px;color:red;"></span>
+
     <div>
+
       <span class="isSet">确定修改</span>
 
     </div>
